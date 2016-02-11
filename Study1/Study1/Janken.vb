@@ -3,8 +3,6 @@
 
     Sub Main()
 
-
-
         Dim persons As String = String.Empty
         Dim tryCount As Integer = 0
 
