@@ -2,11 +2,11 @@
 Imports Study1
 
 ''' <summary>
-''' じゃんけんをする人間の基本クラス
+''' じゃんけんをする基本クラス
 ''' </summary>
-Public Class Person
+Public Class BaseUnit
     Implements IJanken
-    Implements IPerson
+    Implements IBaseUnit
 
 #Region "変数"
     Private _rockProbaility As Short = 1
@@ -64,7 +64,7 @@ Public Class Person
     ''' 名前を設定します。
     ''' </summary>
     ''' <returns></returns>
-    Public Property Name As String Implements IPerson.Name
+    Public Property Name As String Implements IBaseUnit.Name
         Get
             Return _Name
         End Get
@@ -97,7 +97,7 @@ Public Class Person
     ''' じゃんけんの結果を出力します。
     ''' </summary>
     ''' <remarks>一度出したら変更不可</remarks>
-    Private Function IJanken_OutputJanken() As IJanken.result Implements IJanken.OutputJanken
+    Public Overridable Function IJanken_OutputJanken() As IJanken.result Implements IJanken.OutputJanken
 
         If _result <> IJanken.result.None Then
             Return _result

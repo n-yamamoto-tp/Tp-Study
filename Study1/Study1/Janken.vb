@@ -25,9 +25,11 @@
         End Try
 
 
-        Dim playerList As New List(Of Person)
+        Dim playerList As New List(Of IBaseUnit)
         For Each s As String In persons.Split(","c)
-            Dim person As New Person
+
+            'ToDO　人ならざるものを増やす分岐
+            Dim person As New BaseUnit
             person.Name = s
             playerList.Add(person)
         Next
@@ -41,7 +43,7 @@
 
             Dim jrj As New JankenResulJudge
 
-            For Each player As Person In playerList
+            For Each player As IBaseUnit In playerList
                 jrj.PlayerList.Add(player)
                 Console.WriteLine("参加者：" & player.Name)
             Next
@@ -55,9 +57,9 @@
 
         Next
 
-        For Each player As Person In playerList
+        For Each player As IBaseUnit In playerList
             If TypeOf player Is IJanken Then
-                Console.WriteLine(player.Name & "は" & tryCount & "回中、" & player.WinCount & "回、勝ちました。")
+                Console.WriteLine(player.Name & "は" & tryCount & "回中、" & DirectCast(player, IJanken).WinCount & "回、勝ちました。")
             End If
 
         Next

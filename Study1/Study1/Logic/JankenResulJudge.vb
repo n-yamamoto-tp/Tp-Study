@@ -1,12 +1,12 @@
 ﻿Public Class JankenResulJudge
 
-    Private _list As New List(Of Person)
+    Private _list As New List(Of IBaseUnit)
 
-    Public Property PlayerList As List(Of Person)
+    Public Property PlayerList As List(Of IBaseUnit)
         Get
             Return Me._list
         End Get
-        Set(value As List(Of Person))
+        Set(value As List(Of IBaseUnit))
             Me._list = value
         End Set
     End Property
@@ -19,7 +19,7 @@
 
         Dim rcpList As New List(Of Integer)
 
-        For Each p As Person In PlayerList
+        For Each p As BaseUnit In PlayerList
             p.Reset()
             If TypeOf p Is IJanken Then
                 If Not rcpList.Contains(DirectCast(p, IJanken).OutputJanken) Then
@@ -56,8 +56,14 @@
             Next
 
             If PlayerList.Count = 1 Then
-                PlayerList(0).WinCount += 1
-                Console.WriteLine(PlayerList(0).Name & "が勝ちました。")
+                If TypeOf PlayerList(0) Is IJanken Then
+                    DirectCast(PlayerList(0), IJanken).WinCount += 1
+                    Console.WriteLine(PlayerList(0).Name & "が勝ちました。")
+                Else
+                    Console.WriteLine("じゃんけんできない人が混じっていますよ？")
+                    Throw New Exception("じゃんけん対象者以外が混じってるエラー")
+                End If
+
             End If
         End If
 
