@@ -1,4 +1,4 @@
-﻿Public Interface IPerson
+﻿Public Interface IBaseUnit
 
     Property Name As String
 
