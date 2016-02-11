@@ -27,6 +27,10 @@
 
                 End If
                 Console.WriteLine("参加者：" & p.Name & " " & GetRspName(DirectCast(p, IJanken).OutputJanken) & "を出しました。")
+            Else
+                Console.WriteLine("じゃんけんできない人が混じっていますよ？")
+                Throw New Exception("じゃんけん対象者以外が混じってるエラー")
+
             End If
 
         Next
@@ -59,9 +63,7 @@
                 If TypeOf PlayerList(0) Is IJanken Then
                     DirectCast(PlayerList(0), IJanken).WinCount += 1
                     Console.WriteLine(PlayerList(0).Name & "が勝ちました。")
-                Else
-                    Console.WriteLine("じゃんけんできない人が混じっていますよ？")
-                    Throw New Exception("じゃんけん対象者以外が混じってるエラー")
+
                 End If
 
             End If
