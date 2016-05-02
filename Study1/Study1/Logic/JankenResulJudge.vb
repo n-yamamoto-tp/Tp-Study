@@ -1,4 +1,4 @@
-﻿Public Class JankenResulJudge
+﻿Public Class JankenResultJudge
 
     Private _list As New List(Of IBaseUnit)
 

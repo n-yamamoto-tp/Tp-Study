@@ -41,15 +41,15 @@
         For i As Integer = 0 To tryCount - 1
             Console.WriteLine("//" & i + 1 & "回目・・・")
 
-            Dim jrj As New JankenResulJudge
+            Dim JunkenJudge As New JankenResultJudge
 
             For Each player As IBaseUnit In playerList
-                jrj.PlayerList.Add(player)
+                JunkenJudge.PlayerList.Add(player)
                 Console.WriteLine("参加者：" & player.Name)
             Next
             Console.WriteLine("=勝負=")
             Dim reStartCount As Integer = 0
-            While jrj.Judge() > 1
+            While JunkenJudge.Judge() > 1
                 reStartCount += 1
                 Console.WriteLine("再勝負（" & reStartCount & "回目）")
             End While
