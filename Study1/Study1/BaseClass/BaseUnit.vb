@@ -1,4 +1,4 @@
-﻿Imports System.Security.Cryptography
+﻿
 Imports Study1
 
 ''' <summary>
@@ -103,18 +103,7 @@ Public Class BaseUnit
             Return _result
         End If
         Dim total As Integer = Me.RockProbaility + Me.ScissorsProbaility + Me.PaperProbaility
-
-        Dim bytes As Byte() = New Byte(4) {}
-
-
-        Dim Gen As RNGCryptoServiceProvider = New RNGCryptoServiceProvider()
-
-        Gen.GetBytes(bytes)
-
-
-
-        Dim rv As New System.Random(BitConverter.ToInt32(bytes, 0))
-        Dim rnd As Integer = rv.Next(total)
+        Dim rnd As Integer = RNG.GetRNG(total)
 
         If rnd > 0 And rnd <= Me.RockProbaility Then
             _result = IJanken.result.Rock

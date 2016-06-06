@@ -24,6 +24,8 @@
 
         End Try
 
+        'Singleton Initializing
+        RNG.RandomNumberGen = RNG.GetInstance()
 
         Dim playerList As New List(Of IBaseUnit)
         For Each s As String In persons.Split(","c)
