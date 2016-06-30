@@ -8,7 +8,7 @@
     Property RockProbaility As Short
     Property ScissorsProbaility As Short
     Property PaperProbaility As Short
-    Property WinCount As Integer
+    Property winCount As Integer
 
     Function OutputJanken() As result
     Sub Reset()

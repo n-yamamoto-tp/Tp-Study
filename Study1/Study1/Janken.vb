@@ -25,7 +25,7 @@
         End Try
 
         'Singleton Initializing
-        RNG.RandomNumberGen = RNG.GetInstance()
+        RNG.GetInstance()
 
         Dim playerList As New List(Of IBaseUnit)
         For Each s As String In persons.Split(","c)
@@ -61,7 +61,7 @@
 
         For Each player As IBaseUnit In playerList
             If TypeOf player Is IJanken Then
-                Console.WriteLine(player.Name & "は" & tryCount & "回中、" & DirectCast(player, IJanken).WinCount & "回、勝ちました。")
+                Console.WriteLine(player.Name & "は" & tryCount & "回中、" & DirectCast(player, IJanken).winCount & "回、勝ちました。")
             End If
 
         Next

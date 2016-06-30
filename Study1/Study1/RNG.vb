@@ -5,7 +5,7 @@
 ''' <remarks>Singleton</remarks>
 Public Class RNG
 
-    Public Shared RandomNumberGen As RNG
+    Private Shared RandomNumberGen As RNG
 
     Private Sub New()
 

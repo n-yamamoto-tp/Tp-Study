@@ -79,7 +79,7 @@ Public Class BaseUnit
     ''' 勝利回数
     ''' </summary>
     ''' <returns></returns>
-    Public Property WinCount As Integer Implements IJanken.WinCount
+    Public Property winCount As Integer Implements IJanken.winCount
         Get
             Return _winCount
         End Get

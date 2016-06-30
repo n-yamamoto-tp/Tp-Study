@@ -22,11 +22,12 @@
         For Each p As BaseUnit In PlayerList
             p.Reset()
             If TypeOf p Is IJanken Then
-                If Not rcpList.Contains(DirectCast(p, IJanken).OutputJanken) Then
-                    rcpList.Add(DirectCast(p, IJanken).OutputJanken)
+                Dim outputJankenResult As IJanken = p
+                If Not rcpList.Contains(outputJankenResult.OutputJanken) Then
+                    rcpList.Add(outputJankenResult.OutputJanken)
 
                 End If
-                Console.WriteLine("参加者：" & p.Name & " " & GetRspName(DirectCast(p, IJanken).OutputJanken) & "を出しました。")
+                Console.WriteLine("参加者：" & p.Name & " " & GetRspName(outputJankenResult.OutputJanken) & "を出しました。")
             Else
                 Console.WriteLine("じゃんけんできない人が混じっていますよ？")
                 Throw New Exception("じゃんけん対象者以外が混じってるエラー")
@@ -42,29 +43,36 @@
 
         'それ以外はスルー
         Dim winner As IJanken.result = IJanken.result.None
-        If rcpList.Contains(IJanken.result.Rock) AndAlso rcpList.Contains(IJanken.result.Scissors) AndAlso Not rcpList.Contains(IJanken.result.Paper) Then
+        If rcpList.Contains(IJanken.result.Rock) AndAlso
+           rcpList.Contains(IJanken.result.Scissors) AndAlso
+           Not rcpList.Contains(IJanken.result.Paper) Then
+
             winner = IJanken.result.Rock
-        ElseIf Not rcpList.Contains(IJanken.result.Rock) AndAlso rcpList.Contains(IJanken.result.Scissors) AndAlso rcpList.Contains(IJanken.result.Paper) Then
+        ElseIf Not rcpList.Contains(IJanken.result.Rock) AndAlso
+                    rcpList.Contains(IJanken.result.Scissors) AndAlso
+                    rcpList.Contains(IJanken.result.Paper) Then
             winner = IJanken.result.Scissors
-        ElseIf rcpList.Contains(IJanken.result.Rock) AndAlso Not rcpList.Contains(IJanken.result.Scissors) AndAlso rcpList.Contains(IJanken.result.Paper) Then
+        ElseIf rcpList.Contains(IJanken.result.Rock) AndAlso
+            Not rcpList.Contains(IJanken.result.Scissors) AndAlso
+                rcpList.Contains(IJanken.result.Paper) Then
             winner = IJanken.result.Paper
         End If
 
         If winner <> IJanken.result.None Then
             For i As Integer = PlayerList.Count - 1 To 0 Step -1
-                If TypeOf PlayerList(i) Is IJanken Then
-                    If Not DirectCast(PlayerList(i), IJanken).OutputJanken = winner Then
-                        PlayerList.Remove(PlayerList(i))
-                    End If
+                Dim player As IJanken = DirectCast(PlayerList(i), IJanken)
+                If Not player.OutputJanken = winner Then
+                    PlayerList.Remove(PlayerList(i))
                 End If
+
             Next
 
             If PlayerList.Count = 1 Then
-                If TypeOf PlayerList(0) Is IJanken Then
-                    DirectCast(PlayerList(0), IJanken).WinCount += 1
-                    Console.WriteLine(PlayerList(0).Name & "が勝ちました。")
+                Dim player As IJanken = DirectCast(PlayerList(0), IJanken)
+                player.winCount += 1
+                Console.WriteLine(PlayerList(0).Name & "が勝ちました。")
 
-                End If
+
 
             End If
         End If
